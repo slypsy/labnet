@@ -1,0 +1,102 @@
+@import "susy";
+@import "breakpoint";
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600');
+
+$br-small: 320px;
+$br-medium: 768px;
+$br-large: 1180px;
+
+
+/*---------colors---------*/
+$silver-chalice: #adadad;
+
+$susy: (
+        flow: ltr, // ltr | rtl
+        output: float, // float | isolate
+        math: fluid, // fluid | static (requires column-width)
+        column-width: false,//80px, // false | value
+        container: auto, // length or % | auto
+        container-position: center, // left | center | right | <length> [*2] (grid padding)
+        last-flow: to,
+        columns: 12,
+        gutters: 1/4,
+        gutter-position: after, // before | after | split | inside | inside-static (requires column-width)
+        global-box-sizing: content-box, // content-box | border-box (affects inside/inside-static)
+        debug: (image: hide)
+);
+.container {
+  @include show-grid(12);
+  @include breakpoint($br-small) {
+    @include container(275px);
+  }
+  @include breakpoint($br-medium) {
+    @include container(650px);
+  }
+  @include breakpoint($br-large) {
+    @include container(1111px);
+  }
+}
+@include breakpoint($br-medium){
+  .column-1-4, .column-2-4, .column-3-4, .column-4-4{
+    @include span(3 of 12);
+  }
+  .column-4-4{
+    @include last;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@import "top-nav";
+
+
+
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.slideout-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 256px;
+  min-height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  z-index: 0;
+  display: none;
+}
+
+.slideout-menu-left {
+  left: 0;
+}
+
+.slideout-menu-right {
+  right: 0;
+}
+
+.slideout-panel {
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  background-color: #FFF; /* A background-color is required */
+  min-height: 100vh;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+  overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+  display: block;
+}

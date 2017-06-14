@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Labnet</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    </head>
+<body>
+<nav id="menu">
+</nav>
+<main id="panel">
+    <div class="container">
+        <div class="top-nav">
+            <p>Za pomoć pri kupovini, dodatne informacije i poručivanje pozovite: <span>011 20 28 645</span></p>
+            <div class="user-type-nav">
+                <a href="#">O nama</a>
+                <a href="#">Kupovina</a>
+                <a href="#">Prodajna mesta</a>
+                <a href="#">Najčešća pitanja</a>
+                <a href="#">Novosti</a>
+                <a href="#">TV Shop</a>
+                <a href="#">Blog</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/slideout.min.js"></script>
+    <script>
+        $(function () {
+
+            $('.nav-tabs .tab').click(function () {
+                $('.nav-tabs a').removeClass('active');
+                $('.tabs .tab-content').removeClass('active');
+                $(this).find(' > a').addClass('active');
+                $($(this).find(' > a').attr('href')).addClass('active');
+            });
+
+            var accordionElements = $('.accordion-button');
+            accordionElements.click(function () {
+                var el = $(this);
+                var elOpened = el.hasClass('active');
+                accordionElements.each(function () {
+                    $(this).removeClass('active');
+                    $(this).next().slideUp();
+                    $(this).find('.arrow').css('transform', 'rotate(0deg)')
+                });
+                if (!elOpened) {
+                    el.addClass('active');
+                    el.find('.arrow').css('transform', 'rotate(180deg)');
+                    el.next().slideDown(700);
+                }
+            });
+            var slideout = new Slideout({
+                'panel': document.getElementById('panel'),
+                'menu': document.getElementById('menu'),
+                'padding': 256,
+                'tolerance': 70,
+                'side': 'right'
+            });
+            document.querySelector('div.burger').addEventListener('click', function () {
+                slideout.toggle();
+            });
+        })
+    </script>
+</main>
+</body>
+</html>

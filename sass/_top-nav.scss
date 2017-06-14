@@ -1,0 +1,21 @@
+.top-nav {
+  padding-top: 15px;
+  p {
+    font-size: 10px;
+    display: inline-block;
+    span {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+    }
+  }
+  .user-type-nav {
+    display: inline;
+    float: right;
+    a {
+      text-decoration: none;
+      font-family: poppins-regular, sans-serif;
+      font-size: 10px;
+    }
+  }
+}
